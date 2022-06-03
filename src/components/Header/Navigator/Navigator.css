@@ -1,4 +1,5 @@
 .app-nav__container {
+	position: relative;
 	width: 100%;
 	padding: 15px;
 	display: flex;
@@ -21,74 +22,8 @@
 	letter-spacing: 0.5rem;
 }
 
-.new-file-name__wrapper {
-	display: grid;
-	position: relative;
-	margin-left: 50px;
-	grid-template-columns: 1fr 4fr;
-	align-items: center;
-	justify-items: center;
-}
-
-.new-file-name__wrapper::before {
-	position: absolute;
-	left: -20px;
-	content: '';
-	display: block;
-	width: 1px;
-	height: 100%;
-	background: #646464;
-}
-
-.new-file-name__label {
-	padding-bottom: 10px;
-	justify-self: left;
-	color: #b8babc;
-	font-size: 1.3rem;
-	font-weight: 300;
-}
-
-.new-file-name__input {
-	grid-column: 2;
-	background: none;
-	border: none;
-	outline: none;
-	font-size: 1.3rem;
-	font-weight: 300;
-	color: #fff;
-	caret-color: #fff;
-	box-sizing: border-box;
-	border-bottom: 1px solid transparent;
-	transition: 0.4s;
-}
-
-.new-file-name__input::placeholder {
-	font-weight: 700;
-}
-
-.new-file-input__wrapper {
-	position: relative;
-}
-
-.new-file-name__input:focus ~ span::after {
-	content: '';
-	color: white;
-	position: absolute;
-	bottom: -1px;
-	z-index: 1;
-	left: 0;
-	width: 100%;
-	height: 1px;
-	background: #fff;
-	animation: show-focus 500ms ease-out;
-}
-
-.new-file-name__icon {
-	width: 20px;
-	height: 20px;
-	display: block;
-	grid-row: span 2;
-	background-image: url(/public/assets/File.svg);
+.Drawer-app__title {
+	display: none;
 }
 
 .file-managing-btns__wrapper {
@@ -145,7 +80,7 @@
 	}
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
 	.app-title {
 		display: none;
 	}
@@ -154,11 +89,13 @@
 		display: none;
 	}
 
-	.new-file-name__label {
-		display: none;
+	.Drawer-app__title {
+		display: block;
 	}
+}
 
-	.new-file-name__wrapper::before {
-		display: none;
+@media screen and (min-width: 650px) and (max-width: 920px) {
+	.app-nav__container {
+		margin-left: 50px;
 	}
 }

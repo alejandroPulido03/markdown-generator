@@ -1,0 +1,48 @@
+:root {
+	--width: min(90vw, 300px);
+}
+
+.drawer-menu__btn {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	width: 70px;
+	background-color: var(--nav-drawer);
+	cursor: pointer;
+	transition: 0.5s ease-out;
+}
+
+.drawer-menu__btn-icon {
+	width: 70px;
+	height: 100%;
+	background-image: url('/public/assets/Menu.svg');
+	background-size: 50%;
+}
+
+.drawer-menu__btn__active {
+	margin-left: var(--width);
+}
+
+.drawer-menu__container {
+	--width: min(85vw, 300px);
+	height: 100vh;
+	position: absolute;
+	left: calc(var(--width) * -1);
+	width: var(--width);
+	background-color: #1d1f22;
+	z-index: 1;
+}
+
+.drawer-menu__btn-icon-active {
+	background-image: url('/public/assets/Close.svg');
+}
+
+@media screen and (max-width: 920px) {
+	.drawer-menu__btn {
+		position: absolute;
+		width: 50px;
+		height: 100%;
+
+		z-index: 1;
+	}
+}
