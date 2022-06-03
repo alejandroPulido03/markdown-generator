@@ -36,7 +36,7 @@ function DrawerMenu() {
 	};
 	return (
 		<div className='drawer-menu__container'>
-			<h1 className='app-title '>Markdown</h1> {/*Drawer-app__title*/}
+			<h1 className='app-title Drawer-app__title'>Markdown</h1>
 			<h2 className='drawer-menu__title'>My documents</h2>
 			<button className='file-managing-btns__save file-menu__new'>
 				+ New Document

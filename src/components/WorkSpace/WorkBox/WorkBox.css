@@ -1,0 +1,82 @@
+main {
+	position: relative;
+}
+
+.sub-header__workbox {
+	display: flex;
+	width: 100%;
+	padding: 12px 20px;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 1.2rem;
+	font-weight: 400;
+	letter-spacing: 0.3rem;
+	text-transform: uppercase;
+	color: var(--header__subtitle);
+	background-color: var(--header__editor);
+	transition: 500ms;
+}
+
+.workSpace-container {
+	width: 100%;
+	min-height: 100vh;
+	border-right: 1px solid var(--preview__box);
+	transition: 500ms;
+	color: black;
+	visibility: visible;
+	transition: 500ms width, 500ms 500ms color;
+}
+
+.workSpace-container-hidden {
+	width: 0;
+	visibility: collapse;
+	color: transparent;
+	transition: 500ms width, 500ms 10ms color;
+}
+
+@media screen and (max-width: 650px) {
+	.workSpace-container:first-child {
+		position: absolute;
+		z-index: 1;
+
+		transition: 500ms width, 500ms 500ms color;
+	}
+
+	.workSpace-container ~ .workSpace-container {
+		z-index: -1;
+		visibility: collapse;
+		width: 0;
+
+		color: transparent;
+	}
+
+	.workSpace-container-hidden ~ .workSpace-container {
+		z-index: 1;
+		visibility: visible;
+		width: 100%;
+		color: black;
+		transition: 500ms -100ms width, 500ms 500ms color;
+	}
+}
+
+.sub-header__workbox-icon {
+	position: absolute;
+	top: 12px;
+	right: 15px;
+	display: block;
+	width: 1.7rem;
+	height: 1.7rem;
+	background-image: url('/public/assets/ViewOn.svg');
+	background-size: contain;
+	background-color: transparent;
+	border: none;
+	filter: brightness(1) invert(1);
+	cursor: pointer;
+	transition: 500ms;
+	outline: none;
+	z-index: 4;
+}
+
+.sub-header__workbox-icon-active {
+	background-image: url('/public/assets/ViewOff.svg');
+}
