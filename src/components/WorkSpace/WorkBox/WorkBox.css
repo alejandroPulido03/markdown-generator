@@ -19,19 +19,26 @@ main {
 
 .workSpace-container {
 	width: 100%;
-	min-height: 100vh;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 20px;
 	border-right: 1px solid var(--preview__box);
 	transition: 500ms;
 	color: black;
 	visibility: visible;
-	transition: 500ms width, 500ms 500ms color;
+	transition: 500ms width;
+	overflow-y: auto;
 }
 
 .workSpace-container-hidden {
 	width: 0;
 	visibility: collapse;
+	font-size: 0;
 	color: transparent;
-	transition: 500ms width, 500ms 10ms color;
+	transition: 1000ms color, 500ms 10ms width;
 }
 
 @media screen and (max-width: 650px) {
