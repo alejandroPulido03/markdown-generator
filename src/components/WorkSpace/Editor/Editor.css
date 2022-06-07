@@ -15,7 +15,7 @@
 	padding-right: 60px;
 	margin: 0;
 	font-size: 1.5rem;
-	font-family: var(--editor);
+	font-family: var(--main);
 	color: var(--editor__text);
 	background-color: var(--bg);
 	transition: 500ms;
