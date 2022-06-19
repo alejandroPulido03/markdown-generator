@@ -17,6 +17,7 @@
 	font-size: 1.5rem;
 	font-family: var(--main);
 	color: var(--editor__text);
+	caret-color: var(--highlight-color);
 	background-color: var(--bg);
 	transition: 500ms;
 }

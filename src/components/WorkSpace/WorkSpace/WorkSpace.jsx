@@ -6,6 +6,7 @@ import './WorkSpace.css';
 export default function WorkSpace() {
 	const [isPreview, setIsPreview] = useState(false);
 	const [userText, setUserText] = useState('');
+
 	return (
 		<main>
 			<Editor

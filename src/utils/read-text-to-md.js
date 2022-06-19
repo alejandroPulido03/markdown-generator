@@ -1,63 +1,80 @@
 export default function markDownToHtml(text) {
 	const htmlLines = [];
-	const highlight_text = {
-		'**': ['<strong>', '</strong>'],
-		'*': ['<em>', '</em>'],
-		_: ['<u>', '</u>'],
-		'`': ['<code><xmp>', '</xmp></code>'],
-		'~~': ['<del>', '</del>'],
-	};
 
 	text.split('\n').forEach(line => {
 		let formatedText = line;
-		let word = line.split(' ');
-		if (word[0][0] === '#') {
-			formatedText = `<h${word[0].length}>${word.splice(1).join(' ')}</h${
-				word[0].length
-			}>`;
-		} else if (
-			word[0][0] === '*' ||
-			word[0][0] === '_' ||
-			word[0][0] === '-'
-		) {
-			formatedText = `<li>${word.splice(1).join(' ')}</li>`;
-		}
 
-		for (let key in highlight_text) {
-			if ((formatedText.split(key).length - 1) % 2 === 0) {
-				for (let i = 0; i < formatedText.split(key).length; i += 2) {
-					console.log(formatedText.split(key), key);
-					formatedText = formatedText
-						.replace(key, highlight_text[key][0])
-						.replace(key, highlight_text[key][1]);
-				}
-			}
-		}
+		formatedText = formatTextDecorations(formatedText);
+		formatedText = formatBlockquote(formatedText);
+		formatedText = formatTitles(formatedText);
 
 		htmlLines.push(formatedText);
 	});
-	return htmlLines.join('<br>');
+	return htmlLines.join('');
+}
+
+function formatBlockquote(formatedText) {
+	const word = formatedText.split(' ');
+	if (word[0][0] === '>') {
+		formatedText = formatedText.replace(/>/g, "<div class='blockquote'> ");
+		return formatedText.concat(
+			' </div>'.repeat((formatedText.match(/>/g) || []).length)
+		);
+	} else {
+		return formatedText.concat('</br>');
+	}
+}
+
+function formatTitles(formatedText) {
+	const titleTagIndex = Math.max(
+		formatedText.indexOf('#', formatedText.indexOf('>')),
+		formatedText.indexOf('#')
+	);
+	if (titleTagIndex >= 0) {
+		if (
+			titleTagIndex + 1 < formatedText.length &&
+			(formatedText[titleTagIndex + 1] === ' ' ||
+				formatedText[titleTagIndex + 1] === '#')
+		) {
+			const value = formatedText.slice(titleTagIndex).split(' ');
+			formatedText = `${formatedText.slice(0, titleTagIndex)} <h${
+				value[0].length
+			}> ${value.slice(1).join(' ')} </h${value[0].length}>`;
+		}
+	}
+	return formatedText;
+}
+
+function formatTextDecorations(formatedText) {
+	const highlight_text = {
+		'`': ['<code><xmp> ', ' </xmp></code>'],
+		'**': ['<strong> ', ' </strong>'],
+		'*': ['<em> ', ' </em>'],
+		_: ['<u> ', ' </u>'],
+		'~~': ['<del> ', ' </del>'],
+	};
+	for (let key in highlight_text) {
+		if ((formatedText.split(key).length - 1) % 2 === 0) {
+			for (let i = 0; i < formatedText.split(key).length; i += 2) {
+				formatedText = formatedText
+					.replace(key, highlight_text[key][0])
+					.replace(key, highlight_text[key][1]);
+			}
+		}
+	}
+	return formatedText;
 }
 
 /* 
-Use a object to store the markdown text
 
-# = h1
-## = h2
-### = h3
-#### = h4
-##### = h5
-###### = h6
+TODO: Dont show blocks of code with the ` character
+TODO: Improve the transition when the editor is resized
+TODO: Save the text in the editor when the user clicks on the save button
+
+
 ===============	= h1
 --------------- = h2
-\n = <br>
-**word** = <strong>
-__word__ = <strong>
-*word* = <em>
-_word_ = <em>
-***word*** = <strong><em>
-___word___ = <strong><em>
-~~word~~ = <del>
+
 
 - = <ul>
 + = <ul>
@@ -81,8 +98,7 @@ ___ = <hr>
 | b |b  | = <table>
 
 \ = escaping
-> = blockquote
->> = nested blockquote
+
 
 https://www.markdownguide.org/cheat-sheet/ = markdown cheat sheet
 
