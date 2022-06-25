@@ -12,9 +12,10 @@
 	--header: #2b2d31;
 	--header__subtitle: #515253;
 	--header__editor: #f5f5f5;
-	--editor__text: #35393f;
+	--editor__text: #7c8187;
 	--preview__box: #f5f5f5;
 	--preview__titles: #35393f;
+	--track-scroll: #ccc;
 }
 
 .dark {
@@ -25,6 +26,7 @@
 	--editor__text: #87888c;
 	--preview__box: #2c2d31;
 	--preview__titles: #ececec;
+	--track-scroll: #aaa;
 }
 
 * {
@@ -62,10 +64,13 @@ header {
 *::-webkit-scrollbar {
 	background-color: var(--preview__box);
 	width: 5px;
+	height: 5px;
+	transition: 500ms;
 }
 
 *::-webkit-scrollbar-thumb {
-	background-color: var(--highlight-color);
+	background-color: var(--track-scroll);
+	transition: 500ms;
 }
 
 *::-webkit-scrollbar-thumb:hover {

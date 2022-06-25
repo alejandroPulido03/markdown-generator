@@ -1,6 +1,8 @@
 .workSpace-preview__container {
-	width: 90%;
-	margin-bottom: 100px;
+	width: 100%;
+	padding: 0 5%;
+	padding-bottom: 100px;
+	overflow-y: auto;
 }
 
 .mdFormat {
@@ -78,31 +80,29 @@
 	color: var(--preview__titles);
 	font-size: 1.4rem;
 	font-weight: 600;
+	line-height: 3rem;
 	background-color: var(--preview__box);
 	border-left: var(--highlight-color) 4px solid;
 }
 
-.mdFormat .blockquote:first-of-type {
-	border-radius: 5px 5px 0 0;
-	padding-top: 20px;
-}
-
-.mdFormat .blockquote:last-of-type {
-	border-radius: 0 0 5px 5px;
-	padding-bottom: 20px;
-}
-
-.mdFormat .blockquote:only-of-type {
-	border-radius: 5px;
-}
-
-.mdFormat .blockquote:only-child {
-	border-radius: 0px;
-	padding: 0 20px;
-}
-
 .mdFormat code xmp {
 	display: inline;
+	padding: 3px 2px;
 	background: var(--preview__box);
 	border-radius: 5px;
+	font-family: monospace;
+}
+
+.mdFormat .CodeBlock xmp {
+	width: 100%;
+	margin: 20px 0;
+	padding: 0 0 20px 25px;
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	background: var(--preview__box);
+}
+
+.mdFormat .checkbox {
+	pointer-events: none;
 }
